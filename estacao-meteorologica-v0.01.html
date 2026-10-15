@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estação Meteorológica Escolar | Ensino de Física</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+<style>
+:root{--bg:#0c1524;--panel:#17263a;--border:#304158;--text:#ecf3fb;--muted:#a9bbcf;--accent:#55c7e8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px system-ui,Arial,sans-serif}header{background:#132337;border-bottom:1px solid var(--border);padding:22px max(20px,calc((100% - 1100px)/2))}h1{margin:0;font-size:clamp(1.4rem,3vw,2rem)}header p{color:var(--muted);margin:6px 0 0}main{max-width:1100px;margin:auto;padding:24px 18px 60px}.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}.tabs button,button{cursor:pointer;background:#233951;color:white;border:1px solid #48617a;border-radius:10px;padding:12px 17px;font:inherit}.tabs button[aria-selected=true],button.primary{background:#087eaa;border-color:#29b9e4}.tab{display:none}.tab.active{display:block}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.card,.panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px}.card .value{font-size:1.7rem;font-weight:750;margin-top:10px}.muted{color:var(--muted)}.notice{border-left:4px solid #e7b15a;background:#302b25;padding:12px 16px;border-radius:8px;margin:18px 0}.panel{margin-top:18px}label{display:block;margin:15px 0 6px;font-weight:600}input,select,textarea{width:100%;padding:12px;background:#0f1b2b;color:white;border:1px solid #65788e;border-radius:8px;font:inherit}textarea{min-height:110px}fieldset{border:1px solid var(--border);border-radius:10px;margin:20px 0;padding:14px}fieldset label{font-weight:400;display:flex;align-items:flex-start;gap:8px}input[type=radio]{width:auto;margin-top:5px}button:disabled{opacity:.5;cursor:not-allowed}canvas{max-height:320px}footer{color:var(--muted);text-align:center;padding:20px}.status{color:#ffd18a}a{color:#83dcff}@media(max-width:750px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:14px}.card .value{font-size:1.4rem}}
+</style>
+</head>
+<body>
+<header><h1>☁ Estação Meteorológica Escolar</h1><p>Ensino de Física · Investigação científica e avaliação da aprendizagem</p></header>
+<main>
+<nav class="tabs" aria-label="Seções">
+<button data-tab="painel" aria-selected="true">Painel</button><button data-tab="graficos" aria-selected="false">Gráficos</button><button data-tab="atividades" aria-selected="false">Atividades</button><button data-tab="avaliacao" aria-selected="false">Avaliação</button>
+</nav>
+<section id="painel" class="tab active"><h2>Condições meteorológicas</h2><p class="status">● Modo demonstração — estação ainda não conectada</p>
+<div class="grid"><div class="card"><div class="muted">🌡 Temperatura</div><div class="value">24,6 °C</div></div><div class="card"><div class="muted">💧 Umidade</div><div class="value">78%</div></div><div class="card"><div class="muted">◉ Pressão</div><div class="value">1012 hPa</div></div><div class="card"><div class="muted">☀ Luminosidade</div><div class="value">18.450 lx</div></div></div>
+<div class="notice">Os valores apresentados são fictícios. Nenhuma medição real está sendo recebida nesta versão.</div>
+<div class="panel"><h3>Sobre o projeto</h3><p>Esta plataforma integra dados de uma estação meteorológica escolar a atividades investigativas de Física. Futuramente, os dados serão recebidos do ESP8266 e armazenados no Google Drive.</p></div></section>
+<section id="graficos" class="tab"><h2>Histórico das medições</h2><p class="muted">Exemplo com dados fictícios — gráfico de temperatura.</p><div class="panel"><canvas id="grafico" aria-label="Gráfico demonstrativo de temperatura"></canvas></div></section>
+<section id="atividades" class="tab"><h2>Atividades investigativas</h2><div class="panel"><h3>Investigação 01 — Mudanças no tempo</h3><p>Observe os valores de temperatura, umidade e pressão atmosférica. Quais grandezas poderiam ajudar a identificar a aproximação de uma frente meteorológica?</p><p>Registre uma hipótese e justifique-a com conceitos físicos. Depois, acesse a aba <strong>Avaliação</strong> para responder.</p></div></section>
+<section id="avaliacao" class="tab"><h2>Avaliação da aprendizagem</h2><div class="notice">Formulário em demonstração. O envio para o Google Planilhas ainda não está ativado. Não digite informações pessoais reais neste teste.</div>
+<form id="formulario"><label for="codigo">Código do estudante (fictício neste teste)</label><input id="codigo" name="codigo" required maxlength="30" placeholder="Ex.: TESTE001">
+<label for="turma">Turma</label><select id="turma" name="turma" required><option value="">Selecione</option><option>1º ano</option><option>2º ano</option><option>3º ano</option></select>
+<fieldset><legend><strong>Questão 1.</strong> Uma queda de pressão atmosférica pode estar associada a:</legend><label><input type="radio" name="q1" value="A" required> A) Ausência de ventos</label><label><input type="radio" name="q1" value="B"> B) Aproximação de um sistema de baixa pressão</label><label><input type="radio" name="q1" value="C"> C) Umidade sempre igual a zero</label></fieldset>
+<label for="q2">Questão 2. Como os dados da estação podem ajudar a investigar mudanças no tempo?</label><textarea id="q2" name="q2" required maxlength="3000"></textarea>
+<button class="primary" type="submit">Validar respostas (sem enviar)</button><p id="mensagem" role="status" aria-live="polite"></p></form></section>
+</main><footer>Estação Meteorológica Escolar · Projeto de Ensino de Física</footer>
+<script>
+const tabs=document.querySelectorAll('[data-tab]');
+tabs.forEach(b=>b.addEventListener('click',()=>{tabs.forEach(x=>x.setAttribute('aria-selected',String(x===b)));document.querySelectorAll('.tab').forEach(s=>s.classList.toggle('active',s.id===b.dataset.tab));}));
+document.getElementById('formulario').addEventListener('submit',e=>{e.preventDefault();document.getElementById('mensagem').textContent='Respostas preenchidas corretamente. Modo demonstração: nenhum dado foi enviado ou armazenado.';});
+if(window.Chart){new Chart(document.getElementById('grafico'),{type:'line',data:{labels:['08h','09h','10h','11h','12h','13h','14h'],datasets:[{label:'Temperatura (°C) — exemplo',data:[20.1,21.2,22.4,23.8,25.1,25.5,24.6],borderColor:'#55c7e8',backgroundColor:'rgba(85,199,232,.15)',tension:.3,fill:true}]},options:{responsive:true,plugins:{legend:{labels:{color:'#ecf3fb'}}},scales:{x:{ticks:{color:'#a9bbcf'}},y:{ticks:{color:'#a9bbcf'}}}}});}
+</script></body></html>
